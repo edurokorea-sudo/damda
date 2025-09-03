@@ -1,0 +1,155 @@
+/* ===========================
+   Base
+   =========================== */
+:root{
+  --bg: #0b1220;
+  --card: #121a2a;
+  --text: #eaf2ff;
+  --muted: #9fb2d2;
+  --line: rgba(255,255,255,.08);
+  --primary: #3ea6ff;
+  --danger: #ff6b6b;
+}
+
+html, body {
+  background: radial-gradient(1200px 700px at 70% -20%, rgba(62,166,255,.12), transparent 60%),
+              radial-gradient(900px 600px at -10% 10%, rgba(62,166,255,.08), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+}
+
+/* 링크 */
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===========================
+   Header
+   =========================== */
+.top {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+}
+.top .container { padding: 16px 0; }
+.logo a { font-weight: 700; letter-spacing: .2px; }
+
+/* ===========================
+   Container & Row (Bootstrap 대체)
+   =========================== */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.game-main {
+  margin: 36px auto;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+
+/* .row를 CSS Grid로 구현 */
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+/* ===========================
+   Cols (Bootstrap 느낌 유지)
+   - sm(≥576px)에서 4칸, md(≥768px)에서 3칸 카드
+   =========================== */
+.col-sm-4 { grid-column: span 12; }
+@media (min-width: 576px) {
+  .col-sm-4 { grid-column: span 6; } /* 2열 */
+}
+@media (min-width: 768px) {
+  .col-sm-4 { grid-column: span 4; } /* 3열 */
+}
+
+/* md에서 3칸(=12/4)과 동일 */
+.col-md-3 { grid-column: span 12; }
+@media (min-width: 768px) {
+  .col-md-3 { grid-column: span 3; } /* 4열 */
+}
+
+/* ===========================
+   Card (thumbnail 대체)
+   =========================== */
+.thumbnail {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .08s ease, box-shadow .2s ease;
+  height: 100%;
+  display: flex;
+}
+.thumbnail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+}
+
+.caption {
+  padding: 16px;
+  width: 100%;
+}
+.caption h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+.caption p { margin: 6px 0; color: var(--muted); }
+
+/* 버튼 박스 정렬 */
+.caption p:last-child {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   Buttons (Bootstrap 호환 스타일)
+   =========================== */
+.btn {
+  display: inline-block;
+  padding: 9px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+  transition: transform .06s ease, box-shadow .2s ease, opacity .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+  text-decoration: none;
+}
+
+/* 프라이머리/위험 */
+.btn-primary { background: rgba(62,166,255,.15); border-color: rgba(62,166,255,.35); color: var(--primary); }
+.btn-danger  { background: rgba(255,107,107,.12); border-color: rgba(255,107,107,.35); color: var(--danger); }
+
+/* a[disabled] 대응 */
+.btn[disabled],
+.btn:disabled,
+.btn.disabled,
+.btn[aria-disabled="true"] {
+  opacity: .45;
+  pointer-events: none;
+}
+
+/* ===========================
+   Helpers
+   =========================== */
+.text-center { text-align: center !important; }
+.mt-2 { margin-top: .5rem !important; }
+.mt-3 { margin-top: 1rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }

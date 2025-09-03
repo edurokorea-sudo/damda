@@ -1,0 +1,177 @@
+/* ===========================
+   Base & Theme
+   =========================== */
+:root{
+  --bg: #0b1220;          /* 짙은 남청색 배경 */
+  --card: #121a2a;        /* 카드/박스 배경 */
+  --accent: #3ea6ff;      /* 포인트(하이라이트) */
+  --muted: #8ea2c2;       /* 보조 텍스트 */
+  --text: #eaf2ff;        /* 본문 텍스트 */
+  --line: rgba(255,255,255,.08);
+  --success: #2ecc71;
+  --warning: #f1c40f;
+}
+
+html, body {
+  height: 100%;
+  background: radial-gradient(1200px 700px at 70% -20%, rgba(62,166,255,.12), transparent 60%),
+              radial-gradient(900px 600px at -10% 10%, rgba(62,166,255,.08), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+  letter-spacing: .1px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===========================
+   Header
+   =========================== */
+.top {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+}
+.top .container {
+  padding: 16px 0;
+}
+.logo a {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: .3px;
+}
+
+/* ===========================
+   Main Layout
+   =========================== */
+.game-main {
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+@media (max-width: 576px){
+  .game-main { margin: 20px 12px; padding: 16px; }
+}
+
+/* ===========================
+   Form
+   =========================== */
+.form-label, label {
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-control, input[type="number"], input[type="text"] {
+  color: var(--text);
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.form-control:focus,
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: rgba(62,166,255,.6);
+  box-shadow: 0 0 0 4px rgba(62,166,255,.15);
+}
+
+/* 숫자 입력 화살표(크롬) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* ===========================
+   Buttons (Bootstrap과 같이 써도 무난)
+   =========================== */
+.btn {
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  border: 1px solid var(--line);
+  transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.btn-default, .btn-secondary, .btn-outline-secondary {
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+}
+
+/* ===========================
+   Result List
+   =========================== */
+.result-container {
+  margin-top: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.02);
+}
+
+/* Bootstrap .list-group-item과 공존 가능 */
+.result-container .list-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: transparent;
+  color: var(--text);
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 14px;
+}
+.result-container .list-group-item:last-child { border-bottom: none; }
+
+.result-container .guess {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: .6px;
+}
+
+.result-container .result,
+.result-container .badge {
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 800;
+  background: linear-gradient(180deg, rgba(62,166,255,.2), rgba(62,166,255,.1));
+  color: var(--accent);
+  border: 1px solid rgba(62,166,255,.35);
+}
+
+/* S/B/OUT 텍스트에 따라 색감 미묘하게 변경 (선택사항) */
+.result-container .badge[data-type="strike"] { color: #7bed9f; border-color: rgba(46, 204, 113,.35); background: rgba(46, 204, 113,.12); }
+.result-container .badge[data-type="ball"]   { color: #f7d774; border-color: rgba(241, 196, 15,.35); background: rgba(241, 196, 15,.12); }
+.result-container .badge[data-type="out"]    { color: #ff8a8a; border-color: rgba(231, 76, 60,.35); background: rgba(231, 76, 60,.12); }
+
+/* ===========================
+   Utility
+   =========================== */
+.container { max-width: 1080px; }
+
+.mb-3 { margin-bottom: 1rem !important; }
+.mt-2 { margin-top: .5rem !important; }
+.mt-3 { margin-top: 1rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+.text-center { text-align: center !important; }
+
+/* 작은 애니메이션 감도 */
+.fade-in {
+  animation: fadeIn .35s ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
